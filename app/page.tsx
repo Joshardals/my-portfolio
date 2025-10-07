@@ -286,7 +286,7 @@ export default function PortfolioPage() {
             <div className="grid grid-cols-12 gap-6 lg:gap-12">
               <div className="col-span-12 lg:col-span-8">
                 <div className="space-y-6 text-zinc-700 font-sans leading-relaxed">
-                  <p>
+                  <p className=" text-justify">
                     I'm a systems thinker who found their calling in the
                     intersection of elegant code and scalable architecture. My
                     journey began with curiosity about how things work under the
@@ -294,7 +294,7 @@ export default function PortfolioPage() {
                     fascinating world of distributed systems.
                   </p>
 
-                  <p>
+                  <p className="text-justify">
                     Over the past five years, I've had the privilege of working
                     with teams that value craftsmanship and impact. Whether it's
                     designing APIs that feel intuitive to use, optimizing
@@ -303,7 +303,7 @@ export default function PortfolioPage() {
                     both technical depth and user empathy.
                   </p>
 
-                  <p>
+                  <p className="text-justify">
                     When I'm not coding, you'll find me reading about
                     distributed systems design, experimenting with new
                     programming languages, or contributing to open source
@@ -374,7 +374,7 @@ export default function PortfolioPage() {
         </section>
 
         {/* Projects section */}
-        <section id="work" className="max-w-6xl mx-auto px-6 py-20 hidden">
+        <section id="work" className="max-w-6xl mx-auto px-6 py-20">
           <div className="space-y-12">
             <div className="flex items-center gap-4">
               <div className="text-sm text-zinc-500 tracking-wider">
