@@ -13,6 +13,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
+import Link from "next/link";
 
 export default function PortfolioPage() {
   const [activeSection, setActiveSection] = useState("intro");
@@ -35,6 +36,7 @@ export default function PortfolioPage() {
       description:
         "High-performance caching layer with automatic failover and consistent hashing.",
       type: "Backend Architecture",
+      demoLink: "https://cache-demo.example.com",
     },
     {
       title: "Real-time Analytics Dashboard",
@@ -42,6 +44,7 @@ export default function PortfolioPage() {
       description:
         "Live data visualization platform processing 100k+ events per second.",
       type: "Full-stack Application",
+      demoLink: "https://analytics-demo.example.com",
     },
     {
       title: "API Gateway Middleware",
@@ -49,6 +52,7 @@ export default function PortfolioPage() {
       description:
         "Microservices orchestration with rate limiting and circuit breakers.",
       type: "Infrastructure",
+      demoLink: "https://gateway-demo.example.com",
     },
   ];
 
@@ -385,8 +389,14 @@ export default function PortfolioPage() {
 
             <div className="grid gap-8">
               {projects.map((project, index) => (
-                <div key={index} className="group">
-                  <div className="grid grid-cols-12 gap-6 p-6 hover:bg-white transition-colors duration-300 rounded-sm">
+                <Link
+                  key={index}
+                  href={project.demoLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group"
+                >
+                  <div className="grid grid-cols-12 gap-6 py-6 xs:px-6 hover:bg-white transition-colors duration-300 rounded-sm">
                     <div className="col-span-12 lg:col-span-3">
                       <div className="space-y-2">
                         <div className="text-xs text-zinc-500 tracking-wider">
@@ -416,7 +426,7 @@ export default function PortfolioPage() {
                       />
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
@@ -512,11 +522,11 @@ export default function PortfolioPage() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-zinc-200 bg-zinc-50 hidden">
+      <footer className="border-t border-zinc-200 bg-zinc-50">
         <div className="max-w-6xl mx-auto px-6 py-8">
-          <div className="flex justify-between items-center text-xs text-zinc-400">
-            <div>© 2025 Alex Chen</div>
-            <div className="tracking-wider">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 text-xs text-zinc-400">
+            <div className="order-2 sm:order-1">© 2025 Alex Chen</div>
+            <div className="tracking-wider order-1 sm:order-2">
               DESIGNED & BUILT WITH INTENTION
             </div>
           </div>
