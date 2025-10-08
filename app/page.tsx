@@ -12,6 +12,7 @@ import {
   Calendar,
   Menu,
   X,
+  Download,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -19,6 +20,7 @@ export default function PortfolioPage() {
   const [activeSection, setActiveSection] = useState("intro");
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const name = "Joshua Bamidele";
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -123,11 +125,22 @@ export default function PortfolioPage() {
     }
   };
 
+  const handleResumeDownload = () => {
+    // In a real application, you would link to your actual resume file
+    // For now, this creates a placeholder download
+    const link = document.createElement("a");
+    link.href = "/resume.pdf"; // Replace with your actual resume file path
+    link.download = "Joshua_Bamidele_Resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="min-h-screen bg-zinc-50 text-zinc-900 font-mono">
       {/* Subtle cursor follower */}
       <div
-        className="fixed w-4 h-4 bg-zinc-400 rounded-full pointer-events-none z-50 opacity-20 transition-opacity duration-300"
+        className="hidden sm:block fixed w-4 h-4 bg-zinc-400 rounded-full pointer-events-none z-50 opacity-20 transition-opacity duration-300"
         style={{
           left: mousePosition.x - 8,
           top: mousePosition.y - 8,
@@ -153,7 +166,9 @@ export default function PortfolioPage() {
       <nav className="fixed top-0 left-0 right-0 z-40 bg-zinc-50/80 backdrop-blur-sm border-b border-zinc-200">
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
-            <div className="text-sm font-medium tracking-wider">ALEX CHEN</div>
+            <div className="text-sm font-medium tracking-wider uppercase">
+              {name}
+            </div>
 
             {/* Desktop navigation */}
             <div className="hidden md:flex gap-8 text-sm">
@@ -226,25 +241,35 @@ export default function PortfolioPage() {
                   itself and interfaces that feel inevitable.
                 </div>
 
-                <div className="flex gap-6 pt-4">
-                  <a
-                    href="#"
-                    className="flex items-center gap-2 text-sm hover:text-zinc-600 transition-colors"
+                <div className="flex flex-col sm:flex-row gap-6 pt-4">
+                  <div className="flex gap-6">
+                    <a
+                      href="#"
+                      className="flex items-center gap-2 text-sm hover:text-zinc-600 transition-colors"
+                    >
+                      <Github size={16} />
+                    </a>
+                    <a
+                      href="#"
+                      className="flex items-center gap-2 text-sm hover:text-zinc-600 transition-colors"
+                    >
+                      <Linkedin size={16} />
+                    </a>
+                    <a
+                      href="#"
+                      className="flex items-center gap-2 text-sm hover:text-zinc-600 transition-colors"
+                    >
+                      <Mail size={16} />
+                    </a>
+                  </div>
+
+                  <button
+                    onClick={handleResumeDownload}
+                    className="inline-flex items-center gap-2 text-sm border border-zinc-300 px-3 py-1.5 hover:bg-zinc-100 transition-colors duration-200 w-fit cursor-pointer"
                   >
-                    <Github size={16} />
-                  </a>
-                  <a
-                    href="#"
-                    className="flex items-center gap-2 text-sm hover:text-zinc-600 transition-colors"
-                  >
-                    <Linkedin size={16} />
-                  </a>
-                  <a
-                    href="#"
-                    className="flex items-center gap-2 text-sm hover:text-zinc-600 transition-colors"
-                  >
-                    <Mail size={16} />
-                  </a>
+                    <Download size={14} />
+                    Resume
+                  </button>
                 </div>
               </div>
             </div>
@@ -255,12 +280,6 @@ export default function PortfolioPage() {
                   CURRENT STATUS
                 </div>
                 <div className="space-y-3">
-                  <div className="flex flex-col xs:flex-row xs:justify-between xs:items-center gap-1">
-                    <span className="text-sm">Location</span>
-                    <span className="text-sm text-zinc-600">
-                      San Francisco, CA
-                    </span>
-                  </div>
                   <div className="flex flex-col xs:flex-row xs:justify-between xs:items-center gap-1">
                     <span className="text-sm">Availability</span>
                     <span className="text-sm text-green-600">
@@ -525,7 +544,9 @@ export default function PortfolioPage() {
       <footer className="border-t border-zinc-200 bg-zinc-50">
         <div className="max-w-6xl mx-auto px-6 py-8">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 text-xs text-zinc-400">
-            <div className="order-2 sm:order-1">© 2025 Alex Chen</div>
+            <div className="order-2 sm:order-1">
+              © {new Date().getFullYear()} {name}
+            </div>
             <div className="tracking-wider order-1 sm:order-2">
               DESIGNED & BUILT WITH INTENTION
             </div>
