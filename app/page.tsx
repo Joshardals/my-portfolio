@@ -1,9 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import {
-  Github,
-  Linkedin,
-  Mail,
   ExternalLink,
   Code2,
   Database,
@@ -14,7 +11,15 @@ import {
   X,
   Download,
 } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import {
+  experience,
+  navigationItems,
+  projects,
+  skills,
+  socialLinks,
+} from "@/lib/data";
 
 export default function PortfolioPage() {
   const [activeSection, setActiveSection] = useState("intro");
@@ -30,91 +35,6 @@ export default function PortfolioPage() {
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
-
-  const projects = [
-    {
-      title: "Distributed Cache System",
-      tech: "Go, Redis, Docker",
-      description:
-        "High-performance caching layer with automatic failover and consistent hashing.",
-      type: "Backend Architecture",
-      demoLink: "https://cache-demo.example.com",
-    },
-    {
-      title: "Real-time Analytics Dashboard",
-      tech: "React, WebSocket, D3.js",
-      description:
-        "Live data visualization platform processing 100k+ events per second.",
-      type: "Full-stack Application",
-      demoLink: "https://analytics-demo.example.com",
-    },
-    {
-      title: "API Gateway Middleware",
-      tech: "Node.js, TypeScript, gRPC",
-      description:
-        "Microservices orchestration with rate limiting and circuit breakers.",
-      type: "Infrastructure",
-      demoLink: "https://gateway-demo.example.com",
-    },
-  ];
-
-  const experience = [
-    {
-      company: "TechFlow Systems",
-      role: "Senior Full-Stack Engineer",
-      period: "2023 - Present",
-      location: "San Francisco, CA",
-      achievements: [
-        "Architected microservices platform serving 50M+ daily requests",
-        "Reduced deployment time by 80% through automated CI/CD pipelines",
-        "Led team of 5 engineers in rebuilding legacy monolith",
-      ],
-    },
-    {
-      company: "DataStream Inc",
-      role: "Backend Engineer",
-      period: "2021 - 2023",
-      location: "Remote",
-      achievements: [
-        "Built real-time data processing system handling 1TB+ daily",
-        "Optimized database queries reducing response time by 60%",
-        "Implemented monitoring infrastructure with 99.9% uptime",
-      ],
-    },
-    {
-      company: "StartupLab",
-      role: "Full-Stack Developer",
-      period: "2020 - 2021",
-      location: "New York, NY",
-      achievements: [
-        "Developed MVP from concept to 10k users in 6 months",
-        "Created responsive web app with React and Node.js",
-        "Integrated payment systems and third-party APIs",
-      ],
-    },
-  ];
-
-  const skills = [
-    {
-      category: "Backend",
-      items: ["Go", "Node.js", "Python", "PostgreSQL", "Redis"],
-    },
-    {
-      category: "Frontend",
-      items: ["React", "TypeScript", "Next.js", "Tailwind", "WebGL"],
-    },
-    {
-      category: "Infrastructure",
-      items: ["Docker", "Kubernetes", "AWS", "Terraform", "GraphQL"],
-    },
-  ];
-
-  const navigationItems = [
-    { label: "ABOUT", id: "about" },
-    { label: "WORK", id: "work" },
-    { label: "EXPERIENCE", id: "experience" },
-    { label: "CONTACT", id: "contact" },
-  ];
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -243,24 +163,18 @@ export default function PortfolioPage() {
 
                 <div className="flex flex-col sm:flex-row gap-6 pt-4">
                   <div className="flex gap-6">
-                    <a
-                      href="#"
-                      className="flex items-center gap-2 text-sm hover:text-zinc-600 transition-colors"
-                    >
-                      <Github size={16} />
-                    </a>
-                    <a
-                      href="#"
-                      className="flex items-center gap-2 text-sm hover:text-zinc-600 transition-colors"
-                    >
-                      <Linkedin size={16} />
-                    </a>
-                    <a
-                      href="#"
-                      className="flex items-center gap-2 text-sm hover:text-zinc-600 transition-colors"
-                    >
-                      <Mail size={16} />
-                    </a>
+                    {socialLinks.map((link) => (
+                      <Link
+                        key={link.label}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`flex items-center gap-2 text-lg transition-colors ${link.colorClass}`}
+                        aria-label={link.label}
+                      >
+                        <FontAwesomeIcon icon={link.icon} />
+                      </Link>
+                    ))}
                   </div>
 
                   <button
@@ -339,7 +253,7 @@ export default function PortfolioPage() {
 
               <div className="col-span-12 lg:col-span-4">
                 <div className="space-y-8">
-                  {/* Skills section moved here */}
+                  {/* Skills section */}
                   <div className="space-y-6">
                     <div className="text-sm text-zinc-500 tracking-wider">
                       CAPABILITIES
