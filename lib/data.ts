@@ -3,7 +3,7 @@ import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 
 export const socialLinks = [
   {
-    href: "https://github.com/yourusername",
+    href: "https://github.com/Joshardals",
     icon: faGithub,
     label: "GitHub",
     colorClass: "hover:text-gray-900",
@@ -15,7 +15,7 @@ export const socialLinks = [
     colorClass: "hover:text-zinc-600",
   },
   {
-    href: "mailto:youremail@example.com",
+    href: "mailto:joshuabamidele219@gmail.com",
     icon: faEnvelope,
     label: "Email",
     colorClass: "hover:text-zinc-600",
@@ -24,63 +24,53 @@ export const socialLinks = [
 
 export const projects = [
   {
-    title: "Distributed Cache System",
-    tech: "Go, Redis, Docker",
+    title: "Student Hostel Finder System",
+    tech: "Next.js, Prisma, Supabase, Pusher",
     description:
-      "High-performance caching layer with automatic failover and consistent hashing.",
-    type: "Backend Architecture",
-    demoLink: "https://cache-demo.example.com",
-  },
-  {
-    title: "Real-time Analytics Dashboard",
-    tech: "React, WebSocket, D3.js",
-    description:
-      "Live data visualization platform processing 100k+ events per second.",
+      "Platform for students to search and compare verified off-campus hostels. Includes multi-role authentication, real-time chat, and scalable pagination.",
     type: "Full-stack Application",
-    demoLink: "https://analytics-demo.example.com",
+    demoLink: "https://havlix.vercel.app/",
   },
   {
-    title: "API Gateway Middleware",
-    tech: "Node.js, TypeScript, gRPC",
+    title: "Client Invoice Management System",
+    tech: "Next.js, MongoDB, Prisma",
     description:
-      "Microservices orchestration with rate limiting and circuit breakers.",
-    type: "Infrastructure",
-    demoLink: "https://gateway-demo.example.com",
+      "Freelancer tool for managing clients, invoices, and payments with secure CRUD operations and real-time dashboard updates.",
+    type: "Full-stack Application",
+    demoLink: "https://client-invoice-app-rust.vercel.app/register",
   },
+  // {
+  //   title: "API Gateway Middleware",
+  //   tech: "Node.js, TypeScript, gRPC",
+  //   description:
+  //     "Microservices orchestration with rate limiting and circuit breakers.",
+  //   type: "Infrastructure",
+  //   demoLink: "https://gateway-demo.example.com",
+  // },
 ];
 
 export const experience = [
   {
-    company: "TechFlow Systems",
-    role: "Senior Full-Stack Engineer",
-    period: "2023 - Present",
-    location: "San Francisco, CA",
-    achievements: [
-      "Architected microservices platform serving 50M+ daily requests",
-      "Reduced deployment time by 80% through automated CI/CD pipelines",
-      "Led team of 5 engineers in rebuilding legacy monolith",
-    ],
-  },
-  {
-    company: "DataStream Inc",
-    role: "Backend Engineer",
-    period: "2021 - 2023",
+    company: "Cruize Easy",
+    role: "Frontend Developer",
+    period: "Sep 2025 – Present",
     location: "Remote",
     achievements: [
-      "Built real-time data processing system handling 1TB+ daily",
-      "Optimized database queries reducing response time by 60%",
-      "Implemented monitoring infrastructure with 99.9% uptime",
+      "Collaborating with designers to build a responsive, user-friendly car-rental platform based on Figma designs.",
+      "Developing reusable components with Next.js and Tailwind CSS to boost development speed and maintain consistency.",
+      "Integrating RESTful APIs to deliver dynamic booking and content features.",
+      "Designed and deployed the landing page, establishing the platform’s visual identity and brand foundation.",
     ],
   },
   {
-    company: "StartupLab",
-    role: "Full-Stack Developer",
-    period: "2020 - 2021",
-    location: "New York, NY",
+    company: "Atoovis Technologies",
+    role: "Frontend Developer Intern",
+    period: "Jul 2024 – Sep 2024",
+    location: "Remote",
     achievements: [
-      "Developed MVP from concept to 10k users in 6 months",
-      "Created responsive web app with React and Node.js",
-      "Integrated payment systems and third-party APIs",
+      "Implemented a dynamic category and subcategory system to enhance product navigation and UX.",
+      "Collaborated with the backend team to consume APIs and develop new interactive features.",
+      "Optimized product images and layout for visual consistency across the platform.",
     ],
   },
 ];
@@ -88,21 +78,34 @@ export const experience = [
 export const skills = [
   {
     category: "Backend",
-    items: ["Go", "Node.js", "Python", "PostgreSQL", "Redis"],
+    items: ["Node.js", "Prisma", "Supabase", "PostgreSQL", "MongoDB"],
   },
   {
     category: "Frontend",
-    items: ["React", "TypeScript", "Next.js", "Tailwind", "WebGL"],
+    items: [
+      "React.js",
+      "Next.js",
+      "JavaScript",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+    ],
   },
   {
-    category: "Infrastructure",
-    items: ["Docker", "Kubernetes", "AWS", "Terraform", "GraphQL"],
+    category: "Core Concepts",
+    items: [
+      "RESTful APIs",
+      "Authentication & Authorization",
+      "CRUD Operations",
+      "Responsive Web Design",
+      "Agile Development",
+    ],
   },
 ];
 
 export const navigationItems = [
   { label: "ABOUT", id: "about" },
-  { label: "WORK", id: "work" },
+  { label: "PROJECTS", id: "projects" },
   { label: "EXPERIENCE", id: "experience" },
   { label: "CONTACT", id: "contact" },
 ];
