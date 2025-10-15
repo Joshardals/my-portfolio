@@ -22,6 +22,8 @@ export const socialLinks = [
   },
 ];
 
+// Images are ss with 1152 x 648
+
 export const projects = [
   {
     title: "Student Hostel Finder System",
@@ -30,6 +32,7 @@ export const projects = [
       "Platform for students to search and compare verified off-campus hostels. Includes multi-role authentication, real-time chat, and scalable pagination.",
     type: "Full-stack Application",
     demoLink: "https://havlix.vercel.app/",
+    image: "/images/projects/hostel-finder-system.webp",
   },
   {
     title: "Client Invoice Management System",
@@ -38,15 +41,8 @@ export const projects = [
       "Freelancer tool for managing clients, invoices, and payments with secure CRUD operations and real-time dashboard updates.",
     type: "Full-stack Application",
     demoLink: "https://client-invoice-app-rust.vercel.app/register",
+    image: "/images/projects/client-invoice-manager.webp",
   },
-  // {
-  //   title: "API Gateway Middleware",
-  //   tech: "Node.js, TypeScript, gRPC",
-  //   description:
-  //     "Microservices orchestration with rate limiting and circuit breakers.",
-  //   type: "Infrastructure",
-  //   demoLink: "https://gateway-demo.example.com",
-  // },
 ];
 
 export const experience = [
@@ -56,10 +52,11 @@ export const experience = [
     period: "Sep 2025 – Present",
     location: "Remote",
     achievements: [
-      "Collaborating with designers to build a responsive, user-friendly car-rental platform based on Figma designs.",
-      "Developing reusable components with Next.js and Tailwind CSS to boost development speed and maintain consistency.",
-      "Integrating RESTful APIs to deliver dynamic booking and content features.",
-      "Designed and deployed the landing page, establishing the platform’s visual identity and brand foundation.",
+      "Collaborating with UX designers to build a responsive, user-friendly car rental platform using Next.js, TypeScript, and Tailwind CSS.",
+      "Developing reusable UI components to enhance scalability, maintainability, and consistency across the platform.",
+      "Integrating RESTful APIs from the backend team to deliver dynamic booking features and real-time data updates.",
+      "Designed and deployed the platform’s landing page, establishing its visual identity and improving initial user engagement by 30%.",
+      "Working within an agile workflow, contributing to sprint planning, code reviews, and iterative product improvements.",
     ],
   },
   {
@@ -68,37 +65,61 @@ export const experience = [
     period: "Jul 2024 – Sep 2024",
     location: "Remote",
     achievements: [
-      "Implemented a dynamic category and subcategory system to enhance product navigation and UX.",
-      "Collaborated with the backend team to consume APIs and develop new interactive features.",
-      "Optimized product images and layout for visual consistency across the platform.",
+      "Built and integrated a dynamic category and subcategory system to improve product navigation and user experience.",
+      "Collaborated closely with backend engineers to consume RESTful APIs and implement new frontend features with React.js and Tailwind CSS.",
+      "Optimized image rendering and product display components, improving platform visual consistency and load performance by 25%.",
+      "Contributed to an agile team environment, participating in weekly standups, code reviews, and sprint retrospectives",
     ],
   },
 ];
 
 export const skills = [
   {
-    category: "Backend",
-    items: ["Node.js", "Prisma", "Supabase", "PostgreSQL", "MongoDB"],
-  },
-  {
     category: "Frontend",
     items: [
-      "React.js",
       "Next.js",
-      "JavaScript",
+      "React.js",
       "TypeScript",
+      "JavaScript (ES6+)",
       "Tailwind CSS",
       "Framer Motion",
+      "Zustand",
+      "Redux Toolkit",
+      "HTML5",
+      "CSS3",
+      "Accessibility (WCAG)",
+      "Responsive Design",
     ],
   },
   {
-    category: "Core Concepts",
+    category: "Backend",
     items: [
-      "RESTful APIs",
-      "Authentication & Authorization",
-      "CRUD Operations",
-      "Responsive Web Design",
-      "Agile Development",
+      "Node.js",
+      "Express.js",
+      "Supabase",
+      "Prisma",
+      "REST APIs",
+      "GraphQL",
+      "API Integration",
+      "Authentication (JWT)",
+      "PostgreSQL",
+      "MySQL",
+      "MongoDB",
+      "WebSocket",
+    ],
+  },
+  {
+    category: "Tools & Practices",
+    items: [
+      "React Testing Library",
+      "Git",
+      "GitHub",
+      "VS Code",
+      "Postman",
+      "Agile Methodologies",
+      "Vercel",
+      "Performance Optimization",
+      "SEO Optimization",
     ],
   },
 ];

@@ -12,7 +12,6 @@ import {
   Download,
 } from "lucide-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import {
@@ -215,7 +214,7 @@ export default function PortfolioPage() {
                 >
                   <div className="flex gap-6">
                     {socialLinks.map((link) => (
-                      <Link
+                      <a
                         key={link.label}
                         href={link.href}
                         target="_blank"
@@ -224,46 +223,21 @@ export default function PortfolioPage() {
                         aria-label={link.label}
                       >
                         <FontAwesomeIcon icon={link.icon} />
-                      </Link>
+                      </a>
                     ))}
                   </div>
 
-                  <Link
+                  <a
                     href="/Joshua_Bamidele_Resume.pdf"
                     download
                     className="inline-flex items-center gap-2 text-sm border border-zinc-300 px-3 py-1.5 hover:bg-zinc-100 transition-colors duration-200 w-fit cursor-pointer"
                   >
                     <Download size={14} />
                     Resume
-                  </Link>
+                  </a>
                 </motion.div>
               </div>
             </div>
-
-            <motion.div
-              className="col-span-12 lg:col-span-4"
-              variants={fadeInUp}
-            >
-              <div className="bg-white rounded-sm border border-zinc-200 p-6 space-y-4">
-                <div className="text-sm text-zinc-500 tracking-wider">
-                  CURRENT STATUS
-                </div>
-                <div className="space-y-3">
-                  <div className="flex flex-col xs:flex-row xs:justify-between xs:items-center gap-1">
-                    <span className="text-sm">Availability</span>
-                    <span className="text-sm text-green-600">
-                      Open to opportunities
-                    </span>
-                  </div>
-                  <div className="flex flex-col xs:flex-row xs:justify-between xs:items-center gap-1">
-                    <span className="text-sm">Focus</span>
-                    <span className="text-sm text-zinc-600">
-                      Frontend & Backend
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
           </motion.div>
         </section>
 
@@ -287,7 +261,7 @@ export default function PortfolioPage() {
                 variants={fadeInUp}
               >
                 <div className="space-y-6 text-zinc-700 font-sans leading-relaxed">
-                  <p className=" text-justify">
+                  <p className="text-justify">
                     I got introduced to programming back in secondary school by
                     my senior, and that moment changed everything. I started
                     with HTML and CSS, built a few small projects, then moved on
@@ -297,13 +271,13 @@ export default function PortfolioPage() {
                   </p>
 
                   <p className="text-justify">
-                    These days, I work across both frontend and backend, but I
-                    enjoy backend development the most. I like building
-                    platforms that actually solve real problems, not just random
-                    projects that don&apos;t have impact. Whether it&apos;s
-                    structuring APIs, handling data, or making sure things scale
-                    smoothly, I enjoy working on the parts that keep everything
-                    running.
+                    These days, I work across both frontend and backend, but
+                    I&apos;m most drawn to frontend development. I enjoy turning
+                    ideas and designs into smooth, interactive user experiences
+                    that feel natural to use. Whether it&apos;s building clean,
+                    responsive interfaces, optimizing performance, or making
+                    sure everything connects perfectly with the backend, I like
+                    creating products that not only work, but feels right.
                   </p>
 
                   <p className="text-justify">
@@ -323,7 +297,7 @@ export default function PortfolioPage() {
                   {/* Skills section */}
                   <div className="space-y-6">
                     <div className="text-sm text-zinc-500 tracking-wider">
-                      CAPABILITIES
+                      SKILLS
                     </div>
                     <div className="space-y-6">
                       {skills.map((skillGroup, index) => (
@@ -343,7 +317,7 @@ export default function PortfolioPage() {
                             </h3>
                           </div>
 
-                          <div className="space-y-1">
+                          <div className="space-y-1 grid grid-cols-2">
                             {skillGroup.items.map((skill, skillIndex) => (
                               <div
                                 key={skillIndex}
@@ -355,19 +329,6 @@ export default function PortfolioPage() {
                           </div>
                         </div>
                       ))}
-                    </div>
-                  </div>
-
-                  {/* Additional info */}
-                  <div className="bg-white rounded-sm border border-zinc-200 p-4 space-y-3">
-                    <div className="text-xs text-zinc-500 tracking-wider">
-                      INTERESTS
-                    </div>
-                    <div className="space-y-2 text-xs text-zinc-600 font-sans">
-                      <div>Backend Engineering</div>
-                      <div>Real-Time Applications</div>
-                      <div>System Design / Scalable Platforms</div>
-                      <div>Fintech</div>
                     </div>
                   </div>
                 </div>
@@ -392,51 +353,57 @@ export default function PortfolioPage() {
               <div className="flex-1 h-px bg-zinc-200" />
             </motion.div>
 
-            <div className="grid gap-8">
+            <div className="grid gap-12">
               {projects.map((project, index) => (
-                <motion.div
-                  key={index}
-                  variants={fadeInUp}
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
-                >
-                  <Link
+                <motion.div key={index} variants={fadeInUp} className="group">
+                  <a
                     href={project.demoLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group block"
+                    className="block"
                   >
-                    <div className="grid grid-cols-12 gap-6 py-6 xs:px-6 hover:bg-white transition-colors duration-300 rounded-sm">
-                      <div className="col-span-12 lg:col-span-3">
+                    <div className="grid grid-cols-12 gap-6 lg:gap-8">
+                      {/* Project Info */}
+                      <div className="col-span-12 lg:col-span-7 space-y-4 order-2 lg:order-1">
                         <div className="space-y-2">
                           <div className="text-xs text-zinc-500 tracking-wider">
                             {project.type}
                           </div>
+                          <h3 className="text-2xl font-medium group-hover:text-zinc-600 transition-colors">
+                            {project.title}
+                          </h3>
                           <div className="text-xs text-zinc-400">
                             {project.tech}
                           </div>
                         </div>
-                      </div>
 
-                      <div className="col-span-12 lg:col-span-6">
-                        <div className="space-y-2">
-                          <h3 className="text-xl font-medium group-hover:text-zinc-600 transition-colors">
-                            {project.title}
-                          </h3>
-                          <p className="text-zinc-600 font-sans leading-relaxed">
-                            {project.description}
-                          </p>
+                        <p className="text-zinc-600 font-sans leading-relaxed">
+                          {project.description}
+                        </p>
+
+                        <div className="flex items-center gap-2 text-sm text-zinc-500 group-hover:text-zinc-700 transition-colors pt-2">
+                          <span className="tracking-wide">View Project</span>
+                          <ExternalLink size={14} />
                         </div>
                       </div>
 
-                      <div className="col-span-12 lg:col-span-3 flex justify-end items-start">
-                        <ExternalLink
-                          size={16}
-                          className="text-zinc-400 group-hover:text-zinc-600 transition-colors"
-                        />
+                      {/* Project Image */}
+                      <div className="col-span-12 lg:col-span-5 order-1 lg:order-2">
+                        <motion.div
+                          className="relative aspect-video overflow-hidden border border-zinc-200 bg-white"
+                          whileHover={{ scale: 1.02 }}
+                          transition={{ duration: 0.3, ease: "easeOut" }}
+                        >
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-full object-top object-cover group-hover:opacity-90 transition-opacity duration-300"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        </motion.div>
                       </div>
                     </div>
-                  </Link>
+                  </a>
                 </motion.div>
               ))}
             </div>
@@ -566,9 +533,6 @@ export default function PortfolioPage() {
           >
             <div className="order-2 sm:order-1">
               © {new Date().getFullYear()} {name}
-            </div>
-            <div className="tracking-wider order-1 sm:order-2">
-              DESIGNED & BUILT WITH INTENTION
             </div>
           </motion.div>
         </div>
