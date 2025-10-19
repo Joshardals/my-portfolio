@@ -12,7 +12,7 @@ import {
   Download,
 } from "lucide-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { motion, useInView } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import {
   experience,
@@ -147,30 +147,34 @@ export default function PortfolioPage() {
           </div>
 
           {/* Mobile navigation */}
-          {isMobileMenuOpen && (
-            <motion.div
-              className="md:hidden absolute top-full left-0 right-0 bg-zinc-50/95 backdrop-blur-sm border-b border-zinc-200"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="flex flex-col px-6 py-4 space-y-4">
-                {navigationItems.map((item, index) => (
-                  <motion.button
-                    key={item.id}
-                    className="text-sm text-left hover:text-zinc-600 transition-colors duration-200 tracking-wide"
-                    onClick={() => scrollToSection(item.id)}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                  >
-                    {item.label}
-                  </motion.button>
-                ))}
-              </div>
-            </motion.div>
-          )}
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                key="mobile-menu"
+                className="md:hidden absolute top-full left-0 right-0 bg-zinc-50/95 backdrop-blur-sm border-b border-zinc-200 overflow-hidden"
+                initial={{ opacity: 0, height: 0, }}
+                animate={{ opacity: 1, height: "auto",}}
+                exit={{ opacity: 0, height: 0,}}
+                transition={{ duration: 0.35,}}
+              >
+                <div className="flex flex-col px-6 py-4 space-y-4">
+                  {navigationItems.map((item, index) => (
+                    <motion.button
+                      key={item.id}
+                      className="text-sm text-left hover:text-zinc-600 transition-colors duration-200 tracking-wide"
+                      onClick={() => scrollToSection(item.id)}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -10 }}
+                      transition={{ duration: 0.3, delay: index * 0.05 }}
+                    >
+                      {item.label}
+                    </motion.button>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </motion.nav>
 
