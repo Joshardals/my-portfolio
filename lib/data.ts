@@ -9,7 +9,7 @@ export const socialLinks = [
     colorClass: "hover:text-gray-900",
   },
   {
-    href: "https://linkedin.com/in/yourusername",
+    href: "https://linkedin.com/in/joshua-bamidele1",
     icon: faSquareLinkedin,
     label: "LinkedIn",
     colorClass: "hover:text-zinc-600",
@@ -38,7 +38,7 @@ export const projects = [
     title: "Client Invoice Management System",
     tech: "Next.js, MongoDB, Prisma",
     description:
-      "Freelancer tool for managing clients, invoices, and payments with secure CRUD operations and real-time dashboard updates.",
+      "Freelancer tool for managing clients, invoices, and payments with secure CRUD operations and dynamic dashboard updates.",
     type: "Full-stack Application",
     demoLink: "https://client-invoice-app-rust.vercel.app/register",
     image: "/images/projects/client-invoice-manager.webp",
