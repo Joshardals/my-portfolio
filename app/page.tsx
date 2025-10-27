@@ -10,6 +10,8 @@ import {
   Menu,
   X,
   Download,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AnimatePresence, motion, useInView } from "framer-motion";
@@ -49,6 +51,7 @@ export default function PortfolioPage() {
   const [activeSection, setActiveSection] = useState("intro");
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [expandedProjects, setExpandedProjects] = useState<number[]>([]);
   const name = "Joshua Bamidele";
 
   // Animation refs for each section
@@ -75,6 +78,12 @@ export default function PortfolioPage() {
       setActiveSection(sectionId);
       setIsMobileMenuOpen(false);
     }
+  };
+
+  const toggleProject = (index: number) => {
+    setExpandedProjects((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+    );
   };
 
   return (
@@ -147,7 +156,7 @@ export default function PortfolioPage() {
           </div>
 
           {/* Mobile navigation */}
-          
+
           <AnimatePresence>
             {isMobileMenuOpen && (
               <motion.div
@@ -204,9 +213,7 @@ export default function PortfolioPage() {
                   </div>
                   <h1 className="text-4xl lg:text-6xl font-light leading-tight">
                     I build web apps that
-                    <span className="block text-zinc-600">
-                      scale and solve.
-                    </span>
+                    <span className="block text-zinc-600">actually work</span>
                   </h1>
                 </motion.div>
 
@@ -365,58 +372,138 @@ export default function PortfolioPage() {
             </motion.div>
 
             <div className="grid gap-12">
-              {projects.map((project, index) => (
-                <motion.div key={index} variants={fadeInUp} className="group">
-                  <a
-                    href={project.demoLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block"
-                  >
+              {projects.map((project, index) => {
+                const isExpanded = expandedProjects.includes(index);
+                return (
+                  <motion.div key={index} variants={fadeInUp}>
                     <div className="grid grid-cols-12 gap-6 lg:gap-8">
                       {/* Project Info */}
-                      <div className="col-span-12 lg:col-span-7 space-y-4 order-2 lg:order-1">
-                        <div className="space-y-2">
-                          <div className="text-xs text-zinc-500 tracking-wider">
-                            {project.type}
+                      <div className="col-span-12 lg:col-span-7 space-y-6 order-2 lg:order-1">
+                        <div className="space-y-4">
+                          <div className="space-y-2">
+                            <div className="text-xs text-zinc-500 tracking-wider">
+                              {project.type}
+                            </div>
+                            <h3 className="text-2xl font-medium">
+                              {project.title}
+                            </h3>
+                            <div className="text-xs text-zinc-400">
+                              {project.tech}
+                            </div>
                           </div>
-                          <h3 className="text-2xl font-medium group-hover:text-zinc-600 transition-colors">
-                            {project.title}
-                          </h3>
-                          <div className="text-xs text-zinc-400">
-                            {project.tech}
-                          </div>
+
+                          <p className="text-zinc-600 font-sans leading-relaxed">
+                            {project.description}
+                          </p>
                         </div>
 
-                        <p className="text-zinc-600 font-sans leading-relaxed">
-                          {project.description}
-                        </p>
+                        {/* Case Study Section */}
+                        <AnimatePresence>
+                          {isExpanded && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.4, ease: "easeInOut" }}
+                              className="overflow-hidden"
+                            >
+                              <div className="space-y-6 pt-6 border-t border-zinc-200">
+                                {/* Challenge */}
+                                <div className="space-y-3">
+                                  <div className="flex items-center gap-2">
+                                    <div className="w-1.5 h-1.5 bg-zinc-400 rounded-full" />
+                                    <h4 className="text-xs font-medium tracking-wider text-zinc-500">
+                                      CHALLENGE
+                                    </h4>
+                                  </div>
+                                  <p className="text-sm text-zinc-600 font-sans leading-relaxed pl-4">
+                                    {project.caseStudy.challenge}
+                                  </p>
+                                </div>
 
-                        <div className="flex items-center gap-2 text-sm text-zinc-500 group-hover:text-zinc-700 transition-colors pt-2">
-                          <span className="tracking-wide">View Project</span>
-                          <ExternalLink size={14} />
+                                {/* Solution */}
+                                <div className="space-y-3">
+                                  <div className="flex items-center gap-2">
+                                    <div className="w-1.5 h-1.5 bg-zinc-400 rounded-full" />
+                                    <h4 className="text-xs font-medium tracking-wider text-zinc-500">
+                                      SOLUTION
+                                    </h4>
+                                  </div>
+                                  <p className="text-sm text-zinc-600 font-sans leading-relaxed pl-4">
+                                    {project.caseStudy.solution}
+                                  </p>
+                                </div>
+
+                                {/* Result */}
+                                <div className="space-y-3">
+                                  <div className="flex items-center gap-2">
+                                    <div className="w-1.5 h-1.5 bg-zinc-400 rounded-full" />
+                                    <h4 className="text-xs font-medium tracking-wider text-zinc-500">
+                                      RESULT
+                                    </h4>
+                                  </div>
+                                  <p className="text-sm text-zinc-600 font-sans leading-relaxed pl-4">
+                                    {project.caseStudy.result}
+                                  </p>
+                                </div>
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+
+                        {/* Action Buttons */}
+                        <div className="flex flex-wrap items-center gap-4 pt-2">
+                          <button
+                            onClick={() => toggleProject(index)}
+                            className="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-zinc-700 transition-colors duration-200"
+                          >
+                            <span className="tracking-wide">
+                              {isExpanded ? "Hide" : "View"} Case Study
+                            </span>
+                            {isExpanded ? (
+                              <ChevronUp size={14} />
+                            ) : (
+                              <ChevronDown size={14} />
+                            )}
+                          </button>
+
+                          <a
+                            href={project.demoLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-sm border border-zinc-300 px-3 py-1.5 hover:bg-zinc-100 transition-colors duration-200"
+                          >
+                            <span className="tracking-wide">Live Demo</span>
+                            <ExternalLink size={14} />
+                          </a>
                         </div>
                       </div>
 
                       {/* Project Image */}
                       <div className="col-span-12 lg:col-span-5 order-1 lg:order-2">
-                        <motion.div
-                          className="relative aspect-video overflow-hidden border border-zinc-200 bg-white"
-                          whileHover={{ scale: 1.02 }}
-                          transition={{ duration: 0.3, ease: "easeOut" }}
+                        <a
+                          href={project.demoLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
                         >
-                          <img
-                            src={project.image}
-                            alt={project.title}
-                            className="w-full h-full object-top object-cover group-hover:opacity-90 transition-opacity duration-300"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        </motion.div>
+                          <motion.div
+                            className="relative aspect-video overflow-hidden border border-zinc-200 bg-white group"
+                            whileHover={{ scale: 1.02 }}
+                            transition={{ duration: 0.3, ease: "easeOut" }}
+                          >
+                            <img
+                              src={project.image}
+                              alt={project.title}
+                              className="w-full h-full object-top object-cover group-hover:opacity-90 transition-opacity duration-300"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                          </motion.div>
+                        </a>
                       </div>
                     </div>
-                  </a>
-                </motion.div>
-              ))}
+                  </motion.div>
+                );
+              })}
             </div>
           </motion.div>
         </section>
